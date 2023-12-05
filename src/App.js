@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import CurrencySelector from "./components/CurrencySelector";
+import { useEffect, useState } from "react";
+import CurrentCourse from "./components/CurrentCourse";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [data, setData] = useState({});
+
+    useEffect(() => {
+        const FetchData = async () => {
+            await fetch(
+                "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json"
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    setData({
+                        usdRate: data
+                            .find((usd) => usd.cc === "USD")
+                            .rate.toFixed(2),
+                        eurRate: data
+                            .find((eur) => eur.cc === "EUR")
+                            .rate.toFixed(2),
+                    });
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        };
+        FetchData();
+    }, []);
+
+    return (
+        <div className="App container">
+            <div className="translucent-box">
+                <CurrentCourse data={data} />
+                <CurrencySelector data={data} />
+            </div>
+        </div>
+    );
 }
 
 export default App;

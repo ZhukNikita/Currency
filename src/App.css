@@ -1,38 +1,67 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.container {
+    background-image: url("./images/imgonline-com-ua-BigPicture-c5DOKVn3Hjhnm.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 200px; /* Пример значения отступа */
+}
+
+.translucent-box {
+    background-color: rgba(
+        121,
+        121,
+        135,
+        0.5
+    ); /* Пример прозрачного синего цвета */
+    padding: 20px; /* Пример значения отступа внутри контейнера */
+    border-radius: 30px;
+}
+
+.all-text {
+    color: rgb(220, 50, 212);
+    font-weight: bold;
+    background-color: aqua;
+}
+
+.selector {
+    background-color: rgb(137, 187, 194);
 }
