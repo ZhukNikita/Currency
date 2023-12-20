@@ -5,9 +5,9 @@ import "../App.css";
 const { Option } = Select;
 
 const CurrencySelector = ({ data }) => {
-    const usd = data.usdRate;
-    const eur = data.eurRate;
-    const uah = 1;
+    console.log(data);
+    const usd = data[0].rate;
+    const eur = data[1].rate;
     const [firstSelector, setFirstSelector] = useState("UAH");
     const [secondSelector, setSecondSelector] = useState("UAH");
     const [firstInput, setFirstInput] = useState("");
@@ -23,11 +23,56 @@ const CurrencySelector = ({ data }) => {
 
     function firstInputHandler(value) {
         setFirstInput(value);
+        // updateSecondInput(value, firstSelector);
+        // Можно сделать код без использования хука useEffect, *
+        // но добавить функцию например updateSecondInput(value, firstSelector) и добавить в неё логику математических операций
     }
 
     function secondInputHandler(value) {
         setSecondInput(value);
+        // updateFirstInput(value, secondSelector);
     }
+
+    // const updateFirstInput = (inputValue, selectorValue) => {
+    //     if (selectorValue === "USD") {
+    //         setSecondInput(inputValue * usd);
+    //     } else if (selectorValue === "EUR") {
+    //         setSecondInput(inputValue * eur);
+    //     } else {
+    //         setSecondInput(inputValue);
+    //     }
+    // };
+
+    // const updateSecondInput = (inputValue, selectorValue) => {
+    //     if (selectorValue === "USD") {
+    //         setFirstInput(inputValue * usd);
+    //     } else if (selectorValue === "EUR") {
+    //         setFirstInput(inputValue * eur);
+    //     } else {
+    //         setFirstInput(inputValue);
+    //     }
+    // };
+
+    //   Небольшие наброски оптимизации кода useEffect начинает обновлять друг друга чего небыло в прошлом коде и я тут запутался
+    // useEffect(() => {
+    //     if (firstSelector === "USD") {
+    //         setSecondInput(firstInput * usd);
+    //     } else if (firstSelector === "EUR") {
+    //         setSecondInput(firstInput * eur);
+    //     } else {
+    //         setSecondInput(firstInput);
+    //     }
+    // }, [firstInput, firstSelector]);
+
+    // useEffect(() => {
+    //     if (secondSelector === "USD") {
+    //         setFirstInput(secondInput * usd);
+    //     } else if (secondSelector === "EUR") {
+    //         setFirstInput(secondInput * eur);
+    //     } else {
+    //         setFirstInput(secondInput);
+    //     }
+    // }, [secondInput, secondSelector]);
 
     useEffect(() => {
         if (firstSelector === "UAH" && secondSelector === "UAH") {
@@ -108,7 +153,6 @@ const CurrencySelector = ({ data }) => {
             }
         }
     }, [secondInput, secondSelector]);
-
     return (
         <div>
             <Space direction="vertical">
