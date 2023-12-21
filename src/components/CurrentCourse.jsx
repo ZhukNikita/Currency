@@ -23,9 +23,9 @@ const CurrentCourse = () => {
                 Aктуальный курс валют (USD, EUR) по отношению к гривне (UAH)
             </h1>
             <div>
-                {data.map((currency) => (
-                    <h2>
-                        1 <img src={currency.photo} width="40" height="22" /> ={" "}
+                {data.filter(el=> el.cc === 'USD' || el.cc === 'EUR').map((currency) => (
+                    <h2 key={currency.cc}>
+                        {currency.cc} = {' '}
                         {currency.rate} UAH
                     </h2>
                 ))}
